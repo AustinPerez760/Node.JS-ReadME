@@ -4,8 +4,8 @@ const inquirer = require ('inquirer');
 
 
 // array of questions for user
-inquirer
-    .prompt([
+function nodePrompt () {
+  return inquirer.prompt([
         {
             type: "input", 
             message: "What is the title of your ReadMe?",
@@ -35,9 +35,21 @@ inquirer
             message: "Test Instructions",
             name: "Tests",
         },
+        {
+            type:"list",
+            message: "select license",
+            choices: [
+                "MIT",
+                "GVL-GPL 3.0",
+                "APACHE 2.0",
+                "BSD 3",
+                "None",
+            ]
+
+        }
 
    
-    ])
+    ])};
 
 
     //const questions = [
@@ -46,26 +58,20 @@ inquirer
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // function to write README file
 function writeToFile(fileName, data) {
+    fs.writeFile (fileName,data,err => {
+        if (err) {
+            throw err;
+        }
+    });
+        
+    
 }
 
 // function to initialize program
 function init() {
-
+    
 }
 
 // function call to initialize program
